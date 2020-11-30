@@ -1,0 +1,5 @@
+[http.routers.enforce-https]
+entryPoints = ["web"]
+middlewares = ["enforce-https"]
+rule = "HostRegexp(`{host:.+}`)"
+service = "dummy"

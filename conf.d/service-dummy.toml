@@ -1,0 +1,3 @@
+# dummy service, for routers which never call the service, f.e. redirectors
+[[http.services.dummy.loadBalancer.servers]]
+url = ""

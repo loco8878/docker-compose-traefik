@@ -1,0 +1,4 @@
+[http.middlewares.enforce-https.redirectScheme]
+scheme = "https"
+port = "443"
+permanent = true

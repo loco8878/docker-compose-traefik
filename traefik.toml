@@ -1,0 +1,52 @@
+[global]
+  checkNewVersion = false
+  sendAnonymousUsage = true
+
+[serversTransport]
+  insecureSkipVerify = true
+  maxIdleConnsPerHost = 0
+
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+  [entryPoints.web-secure]
+    address = ":443"
+  [entryPoints.phpfpm]
+    address = ":9000"
+  [entryPoints.mysql]
+    address = ":3306"
+  [entryPoints.redis]
+    address = ":6379"
+
+[providers]
+  providersThrottleDuration = "2s"
+  [providers.docker]
+    watch = true
+    endpoint = "unix:///var/run/docker.sock"
+    exposedByDefault = false
+    network = "traefik"
+#    swarmModeRefreshSeconds = "15s"
+#    [providers.docker.tls]
+#      insecureSkipVerify = true
+  [providers.file]
+    directory = "/etc/traefik/conf.d/"
+    watch = true
+
+[api]
+  insecure = true
+  dashboard = true
+
+[metrics]
+  [metrics.prometheus]
+    buckets = [0.1, 0.3, 1.2, 5.0]
+    entryPoint = "traefik"
+
+
+[ping]
+
+[log]
+  level = "WARNING"
+#  level = "DEBUG"
+
+[accessLog]
+  bufferingSize = 100
